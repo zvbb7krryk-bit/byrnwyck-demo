@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>898 Byrnwyck Rd NE — Atlanta, GA | Rain Management Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a96e;
+    --gold-light: #e8d5a3;
+    --dark: #0a0a0a;
+    --dark-2: #111111;
+    --dark-3: #1a1a1a;
+    --dark-4: #222222;
+    --white: #ffffff;
+    --off-white: #f5f0e8;
+    --text-muted: #888888;
+    --text-light: #cccccc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(0,0,0,0.95); }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+  }
+  .hero video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-fallback {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.2) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px;
+    width: 100%;
+  }
+  .hero-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-address {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 6vw, 80px);
+    font-weight: 300;
+    line-height: 1.05;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+  .hero-address em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero-city {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 36px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+  .hero-stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--white);
+  }
+  .hero-stat-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 32px;
+    right: 60px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+  }
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    writing-mode: vertical-rl;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  /* INTRO STATS STRIP */
+  .stats-strip {
+    background: var(--dark-3);
+    border-top: 1px solid rgba(201,169,110,0.2);
+    border-bottom: 1px solid rgba(201,169,110,0.2);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+  }
+  .stat-lbl {
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(201,169,110,0.2);
+  }
+
+  /* SECTION SHARED */
+  section { padding: 100px 60px; }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  .section-body {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text-light);
+    max-width: 640px;
+  }
+
+  /* RESIDENCE INTRO */
+  .residence {
+    background: var(--dark-2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .residence-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(201,169,110,0.15);
+  }
+  .feature-item {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .feature-item::before {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .residence-image {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+  }
+  .residence-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 6s ease;
+  }
+  .residence-image:hover img { transform: scale(1.05); }
+  .residence-image::after {
+    content: 'Grand Foyer';
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(0,0,0,0.6);
+    padding: 8px 16px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* PROPERTY SNAPSHOT */
+  .snapshot {
+    background: var(--dark-3);
+  }
+  .snapshot-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 50px;
+    border: 1px solid rgba(201,169,110,0.15);
+  }
+  .snapshot-item {
+    padding: 32px;
+    background: var(--dark-4);
+    transition: background 0.3s;
+  }
+  .snapshot-item:hover { background: rgba(201,169,110,0.05); }
+  .snapshot-key {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .snapshot-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--white);
+  }
+
+  /* PHOTO GALLERY */
+  .gallery { background: var(--dark); padding: 100px 0; }
+  .gallery-header { padding: 0 60px 50px; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 400px 400px;
+    gap: 4px;
+  }
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item.tall { grid-row: 1 / 3; }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-item-label { opacity: 1; }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 32px;
+    font-size: 28px;
+    color: var(--gold);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .lightbox-nav {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .lightbox-btn {
+    background: none;
+    border: 1px solid rgba(201,169,110,0.4);
+    color: var(--gold);
+    padding: 10px 28px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .lightbox-btn:hover { background: var(--gold); color: var(--dark); }
+  .lightbox-caption {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 16px;
+  }
+
+  /* ROOM TOUR */
+  .tour { background: var(--dark-2); }
+  .tour-tabs {
+    display: flex;
+    gap: 0;
+    margin-top: 50px;
+    border-bottom: 1px solid rgba(201,169,110,0.15);
+    flex-wrap: wrap;
+  }
+  .tour-tab {
+    padding: 14px 28px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
+  .tour-tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tour-tab:hover { color: var(--text-light); }
+  .tour-panels { margin-top: 0; }
+  .tour-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding-top: 60px;
+    align-items: center;
+  }
+  .tour-panel.active { display: grid; }
+  .tour-panel-img {
+    height: 480px;
+    overflow: hidden;
+    position: relative;
+  }
+  .tour-panel-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tour-panel-content .section-label { margin-top: 0; }
+  .tour-panel-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .tour-panel-title em { font-style: italic; color: var(--gold-light); }
+  .tour-panel-desc {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text-light);
+    margin-bottom: 30px;
+  }
+  .tour-features { display: flex; flex-direction: column; gap: 10px; }
+  .tour-feature {
+    font-size: 12px;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tour-feature::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* FEATURES GRID */
+  .features { background: var(--dark-3); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 50px;
+  }
+  .feature-card {
+    background: var(--dark-4);
+    padding: 36px 28px;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .feature-card:hover {
+    background: rgba(201,169,110,0.06);
+    transform: translateY(-4px);
+  }
+  .feature-icon { font-size: 28px; margin-bottom: 16px; }
+  .feature-name {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .feature-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+  /* MORTGAGE CALCULATOR */
+  .calculator { background: var(--dark-2); }
+  .calc-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 50px;
+    align-items: start;
+  }
+  .calc-inputs { display: flex; flex-direction: column; gap: 28px; }
+  .calc-field label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .calc-field input, .calc-field select {
+    width: 100%;
+    background: var(--dark-4);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .calc-field input:focus, .calc-field select:focus { border-color: var(--gold); }
+  .calc-field select option { background: var(--dark-4); }
+  .calc-result {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,169,110,0.2);
+    padding: 50px;
+    position: sticky;
+    top: 100px;
+  }
+  .calc-result-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .calc-monthly {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+  }
+  .calc-monthly-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+  .calc-breakdown {
+    margin-top: 40px;
+    border-top: 1px solid rgba(201,169,110,0.15);
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .calc-row span:last-child { color: var(--text-light); }
+
+  /* NEIGHBORHOOD */
+  .neighborhood { background: var(--dark); }
+  .neighborhood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 50px;
+  }
+  .neighbor-card {
+    background: var(--dark-3);
+    padding: 36px 32px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+  }
+  .neighbor-card:hover {
+    background: var(--dark-4);
+    border-bottom-color: var(--gold);
+  }
+  .neighbor-icon { font-size: 26px; margin-bottom: 16px; }
+  .neighbor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .neighbor-desc { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+  .neighbor-dist {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 14px;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,169,110,0.15);
+  }
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+  .form-field label {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .form-field input, .form-field select, .form-field textarea {
+    background: var(--dark-4);
+    border: 1px solid rgba(201,169,110,0.2);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s;
+    resize: none;
+    -webkit-appearance: none;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--gold); }
+  .form-field select option { background: var(--dark-4); }
+  .submit-btn {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 18px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 10px;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { background: var(--gold-light); }
+  .agent-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,169,110,0.15);
+    padding: 50px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .agent-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--dark-4);
+    border: 2px solid rgba(201,169,110,0.3);
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--gold);
+  }
+  .agent-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 6px;
+  }
+  .agent-brokerage {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+  .agent-info { display: flex; flex-direction: column; gap: 12px; }
+  .agent-info-item {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .agent-info-item a { color: var(--text-light); text-decoration: none; }
+  .agent-info-item a:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,169,110,0.1);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .footer-tagline {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .footer-copy {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero-content { padding: 0 24px; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .stats-strip { padding: 30px 20px; flex-wrap: wrap; gap: 20px; }
+    .stat-divider { display: none; }
+    .residence { grid-template-columns: 1fr; gap: 40px; }
+    .residence-image { height: 350px; }
+    .residence-features { grid-template-columns: 1fr; }
+    .snapshot-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .gallery-item.tall { grid-row: auto; }
+    .gallery-item { height: 280px; }
+    .tour-panel { grid-template-columns: 1fr; }
+    .tour-panel-img { height: 300px; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .calc-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .neighborhood-grid { grid-template-columns: 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; gap: 40px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-brand">Rain Management Solutions</div>
+  <ul class="nav-links">
+    <li><a href="#tour">Room Tour</a></li>
+    <li><a href="#calculator">Mortgage</a></li>
+    <li><a href="#neighborhood">Location</a></li>
+    <li><a href="#contact">Schedule Showing</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <video autoplay muted loop playsinline id="heroVideo">
+    <source src="byrnwyck-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Atlanta, Georgia · Brookhaven</div>
+    <h1 class="hero-address">898 <em>Byrnwyck</em><br>Road NE</h1>
+    <div class="hero-city">Atlanta, Georgia 30319</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">4</div>
+        <div class="hero-stat-label">Bedrooms</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">4</div>
+        <div class="hero-stat-label">Bathrooms</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">3,947</div>
+        <div class="hero-stat-label">Sq Feet</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">$1.25M</div>
+        <div class="hero-stat-label">List Price</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Explore</span>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip reveal">
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-lbl">Bedrooms</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">4</div>
+    <div class="stat-lbl">Bathrooms</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">3,947</div>
+    <div class="stat-lbl">Square Feet</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">0.56</div>
+    <div class="stat-lbl">Acre Lot</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">$1.25M</div>
+    <div class="stat-lbl">List Price</div>
+  </div>
+  <div class="stat-divider"></div>
+  <div class="stat-item">
+    <div class="stat-num">1983</div>
+    <div class="stat-lbl">Year Built</div>
+  </div>
+</div>
+
+<!-- RESIDENCE INTRO -->
+<section class="residence reveal">
+  <div class="residence-text">
+    <div class="section-label">The Residence</div>
+    <h2 class="section-title">Timeless Colonial Elegance<br>in the Heart of <em>Brookhaven</em></h2>
+    <p class="section-body">A rare opportunity to own a landmark Colonial estate on one of Brookhaven's most coveted streets. Set on a private half-acre lot framed by mature trees and blooming Japanese maples, 898 Byrnwyck Road NE combines classic Southern architecture with thoughtfully updated interiors — offering a lifestyle of effortless luxury and warm sophistication.</p>
+    <p class="section-body" style="margin-top: 16px;">From the grand two-story foyer with gleaming hardwood floors to the chef's kitchen with navy backsplash, every space tells a story of care, craftsmanship, and character.</p>
+    <div class="residence-features">
+      <div class="feature-item">Grand two-story foyer with hardwood floors</div>
+      <div class="feature-item">Chef's kitchen with island & gold fixtures</div>
+      <div class="feature-item">Vaulted beamed ceilings in living & master</div>
+      <div class="feature-item">Primary suite with en-suite bath</div>
+      <div class="feature-item">Pergola, fire pit & stone patio outdoor living</div>
+      <div class="feature-item">Elevated deck with tree canopy views</div>
+      <div class="feature-item">Navy & white kitchen with wine fridge</div>
+      <div class="feature-item">City skyline views · Open concept living</div>
+      <div class="feature-item">2-car garage on 0.56 acre private lot</div>
+      <div class="feature-item">Minutes to Buckhead & I-285</div>
+    </div>
+  </div>
+  <div class="residence-image">
+    <img src="898byrnwyck.webp" alt="Grand Foyer">
+  </div>
+</section>
+
+<!-- PROPERTY SNAPSHOT -->
+<section class="snapshot reveal" id="snapshot">
+  <div class="section-label">Property Snapshot</div>
+  <h2 class="section-title">Brookhaven — <em>Atlanta's Premier</em> Address</h2>
+  <div class="snapshot-grid">
+    <div class="snapshot-item">
+      <div class="snapshot-key">List Price</div>
+      <div class="snapshot-val">$1,250,000</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Price Per Sq Ft</div>
+      <div class="snapshot-val">$317 / sqft</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Beds / Baths</div>
+      <div class="snapshot-val">4 bd · 4 ba</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Square Footage</div>
+      <div class="snapshot-val">3,947 sqft</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Lot Size</div>
+      <div class="snapshot-val">0.56 Acres</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Style</div>
+      <div class="snapshot-val">Colonial · Classic</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Year Built</div>
+      <div class="snapshot-val">1983</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Garage</div>
+      <div class="snapshot-val">2-Car Attached</div>
+    </div>
+    <div class="snapshot-item">
+      <div class="snapshot-key">Market Trend</div>
+      <div class="snapshot-val">↑ Strong Demand</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<div class="gallery reveal" id="gallery">
+  <div class="gallery-header">
+    <div class="section-label">Photo Gallery</div>
+    <h2 class="section-title">See Every <em>Detail</em></h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item tall" onclick="openLightbox(0)">
+      <img src="898byrnwyckexterior.webp" alt="Exterior">
+      <div class="gallery-item-label">Exterior · Entry</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="898byrnwyck.webp" alt="Foyer">
+      <div class="gallery-item-label">Grand Foyer</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="898byrnwyckliving.webp" alt="Living Room">
+      <div class="gallery-item-label">Living Room</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="898byrnwyckkitchen.webp" alt="Kitchen">
+      <div class="gallery-item-label">Chef's Kitchen</div>
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="898byrnwyckmaster.webp" alt="Master Suite">
+      <div class="gallery-item-label">Primary Suite</div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+  <div class="lightbox-nav">
+    <button class="lightbox-btn" onclick="prevPhoto()">← Prev</button>
+    <button class="lightbox-btn" onclick="nextPhoto()">Next →</button>
+  </div>
+</div>
+
+<!-- ROOM TOUR -->
+<section class="tour reveal" id="tour">
+  <div class="section-label">Interactive Tour</div>
+  <h2 class="section-title">Explore Every <em>Space</em></h2>
+  <div class="tour-tabs">
+    <button class="tour-tab active" onclick="showPanel('exterior')">Exterior</button>
+    <button class="tour-tab" onclick="showPanel('foyer')">Foyer</button>
+    <button class="tour-tab" onclick="showPanel('living')">Living Room</button>
+    <button class="tour-tab" onclick="showPanel('kitchen')">Kitchen</button>
+    <button class="tour-tab" onclick="showPanel('master')">Primary Suite</button>
+    <button class="tour-tab" onclick="showPanel('outdoor')">Outdoor</button>
+  </div>
+  <div class="tour-panels">
+    <div class="tour-panel active" id="panel-exterior">
+      <div class="tour-panel-img"><img src="898byrnwyckexterior.webp" alt="Exterior"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">Curb Appeal</div>
+        <h3 class="tour-panel-title">Classic <em>Colonial</em> Architecture</h3>
+        <p class="tour-panel-desc">A striking white Colonial facade framed by mature trees and blooming Japanese maples on a private half-acre lot. Black shutters, brick entry steps, and manicured grounds create immediate curb appeal that sets this home apart.</p>
+        <div class="tour-features">
+          <div class="tour-feature">Classic white Colonial facade with black shutters</div>
+          <div class="tour-feature">Blooming Japanese maple trees</div>
+          <div class="tour-feature">Brick entry steps with lantern sconces</div>
+          <div class="tour-feature">0.56 acre private lot with mature trees</div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-panel" id="panel-foyer">
+      <div class="tour-panel-img"><img src="898byrnwyck.webp" alt="Foyer"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">First Impressions</div>
+        <h3 class="tour-panel-title">Grand Two-Story <em>Foyer</em></h3>
+        <p class="tour-panel-desc">Step inside to a breathtaking two-story entry with gleaming hardwood floors, white wainscoting, and a sweeping staircase with black iron railing. An artistic chandelier anchors the space above while custom built-in shelving grounds it below.</p>
+        <div class="tour-features">
+          <div class="tour-feature">Gleaming hardwood floors throughout</div>
+          <div class="tour-feature">White wainscoting & crown molding</div>
+          <div class="tour-feature">Sweeping staircase with black iron railing</div>
+          <div class="tour-feature">Custom dark built-in shelving</div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-panel" id="panel-living">
+      <div class="tour-panel-img"><img src="898byrnwyckliving.webp" alt="Living Room"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">Heart of the Home</div>
+        <h3 class="tour-panel-title">Soaring Vaulted <em>Living Room</em></h3>
+        <p class="tour-panel-desc">Dramatic vaulted beamed ceilings soar overhead as the open concept living space flows seamlessly into the dining area. A wood-burning fireplace with artistic screen anchors the room while built-in shelving and original art add personality and warmth.</p>
+        <div class="tour-features">
+          <div class="tour-feature">Dramatic vaulted beamed ceilings</div>
+          <div class="tour-feature">Wood-burning fireplace with artistic screen</div>
+          <div class="tour-feature">Custom white built-in shelving</div>
+          <div class="tour-feature">Open flow to dining & outdoor deck</div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-panel" id="panel-kitchen">
+      <div class="tour-panel-img"><img src="898byrnwyckkitchen.webp" alt="Kitchen"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">Chef's Kitchen</div>
+        <h3 class="tour-panel-title">Designed for <em>How You Live</em></h3>
+        <p class="tour-panel-desc">A stunning chef's kitchen featuring white shaker cabinetry, navy blue subway tile backsplash, and gleaming quartz countertops. The center island with gas cooktop and bar seating makes this kitchen as social as it is functional.</p>
+        <div class="tour-features">
+          <div class="tour-feature">White shaker cabinets with gold hardware</div>
+          <div class="tour-feature">Navy blue subway tile backsplash</div>
+          <div class="tour-feature">Center island with gas cooktop</div>
+          <div class="tour-feature">Wine fridge & stainless appliances</div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-panel" id="panel-master">
+      <div class="tour-panel-img"><img src="898byrnwyckmaster.webp" alt="Primary Suite"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">Primary Suite</div>
+        <h3 class="tour-panel-title">Your Private <em>Sanctuary</em></h3>
+        <p class="tour-panel-desc">Retreat to a primary suite defined by soaring vaulted ceilings with exposed white beams, plantation shutters, and spa-inspired en-suite bath. Generous proportions and serene natural light create a true sanctuary at the end of every day.</p>
+        <div class="tour-features">
+          <div class="tour-feature">Vaulted ceiling with white exposed beams</div>
+          <div class="tour-feature">Plantation shutters & natural light</div>
+          <div class="tour-feature">En-suite spa bath</div>
+          <div class="tour-feature">Generous proportions & sitting area</div>
+        </div>
+      </div>
+    </div>
+    <div class="tour-panel" id="panel-outdoor">
+      <div class="tour-panel-img"><img src="898byrnwyckbackyard.webp" alt="Outdoor"></div>
+      <div class="tour-panel-content">
+        <div class="section-label">Outdoor Living</div>
+        <h3 class="tour-panel-title">Private <em>Resort</em> Backyard</h3>
+        <p class="tour-panel-desc">A fully appointed outdoor living space tucked into a lush private tree canopy. The stone patio features a pergola dining area, fire pit lounge, and elevated deck — perfect for year-round entertaining in total privacy.</p>
+        <div class="tour-features">
+          <div class="tour-feature">Pergola dining area with string lights</div>
+          <div class="tour-feature">Stone fire pit lounge</div>
+          <div class="tour-feature">Elevated deck with tree canopy views</div>
+          <div class="tour-feature">Lush private lot backing to mature trees</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section class="features reveal">
+  <div class="section-label">Property Features</div>
+  <h2 class="section-title">Designed for <em>Exceptional Living</em></h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🏛️</div>
+      <div class="feature-name">Architecture</div>
+      <div class="feature-desc">Classic Colonial · Black Shutters · Brick Entry</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🍳</div>
+      <div class="feature-name">Chef's Kitchen</div>
+      <div class="feature-desc">Navy Backsplash · Gas Island · Wine Fridge</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛁</div>
+      <div class="feature-name">Primary Suite</div>
+      <div class="feature-desc">Vaulted Beams · En-Suite Spa Bath</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔥</div>
+      <div class="feature-name">Outdoor Living</div>
+      <div class="feature-desc">Pergola · Fire Pit · Stone Patio · Deck</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🌳</div>
+      <div class="feature-name">Private Lot</div>
+      <div class="feature-desc">0.56 Acres · Mature Trees · Lush Landscaping</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🪵</div>
+      <div class="feature-name">Hardwood Floors</div>
+      <div class="feature-desc">Gleaming Hardwoods Throughout Main Level</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚗</div>
+      <div class="feature-name">Garage</div>
+      <div class="feature-desc">2-Car Attached Garage</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🏙️</div>
+      <div class="feature-name">City Views</div>
+      <div class="feature-desc">Atlanta Skyline Views · Open Concept Living</div>
+    </div>
+  </div>
+</section>
+
+<!-- MORTGAGE CALCULATOR -->
+<section class="calculator reveal" id="calculator">
+  <div class="section-label">Finance This Home</div>
+  <h2 class="section-title">Mortgage <em>Calculator</em></h2>
+  <p class="section-body">Estimate your monthly payment for 898 Byrnwyck Rd NE.</p>
+  <div class="calc-wrapper">
+    <div class="calc-inputs">
+      <div class="calc-field">
+        <label>Home Price</label>
+        <input type="number" id="homePrice" value="1250000" oninput="calcMortgage()">
+      </div>
+      <div class="calc-field">
+        <label>Down Payment (%)</label>
+        <input type="number" id="downPct" value="20" min="0" max="100" oninput="calcMortgage()">
+      </div>
+      <div class="calc-field">
+        <label>Interest Rate (%)</label>
+        <input type="number" id="rate" value="6.8" step="0.1" oninput="calcMortgage()">
+      </div>
+      <div class="calc-field">
+        <label>Loan Term</label>
+        <select id="term" onchange="calcMortgage()">
+          <option value="30">30 Years</option>
+          <option value="20">20 Years</option>
+          <option value="15">15 Years</option>
+        </select>
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="calc-result-label">Monthly Payment (P&amp;I)</div>
+      <div class="calc-monthly" id="monthlyPayment">$6,538</div>
+      <div class="calc-monthly-label">Principal &amp; interest · taxes &amp; insurance extra</div>
+      <div class="calc-breakdown">
+        <div class="calc-row"><span>Home Price</span><span id="br-price">$1,250,000</span></div>
+        <div class="calc-row"><span>Down Payment</span><span id="br-down">$250,000</span></div>
+        <div class="calc-row"><span>Loan Amount</span><span id="br-loan">$1,000,000</span></div>
+        <div class="calc-row"><span>Interest Rate</span><span id="br-rate">6.8%</span></div>
+        <div class="calc-row"><span>Loan Term</span><span id="br-term">30 Years</span></div>
+        <div class="calc-row"><span>Est. Property Tax</span><span>~$1,042/mo</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEIGHBORHOOD -->
+<section class="neighborhood reveal" id="neighborhood">
+  <div class="section-label">Location</div>
+  <h2 class="section-title">Brookhaven — <em>Atlanta's Most Sought-After</em> Address</h2>
+  <p class="section-body">One of Atlanta's premier intown neighborhoods — tree-lined streets, top-rated schools, and minutes from Buckhead's finest dining, shopping, and culture.</p>
+  <div class="neighborhood-grid">
+    <div class="neighbor-card">
+      <div class="neighbor-icon">🛍️</div>
+      <h3 class="neighbor-name">Buckhead Village</h3>
+      <p class="neighbor-desc">Atlanta's premier luxury shopping and dining destination — world-class boutiques, restaurants, and entertainment.</p>
+      <div class="neighbor-dist">10 minutes away</div>
+    </div>
+    <div class="neighbor-card">
+      <div class="neighbor-icon">🏙️</div>
+      <h3 class="neighbor-name">Atlanta Skyline</h3>
+      <p class="neighbor-desc">City skyline views from the property — Downtown and Midtown Atlanta's energy just minutes from your door.</p>
+      <div class="neighbor-dist">15 minutes away</div>
+    </div>
+    <div class="neighbor-card">
+      <div class="neighbor-icon">🌳</div>
+      <h3 class="neighbor-name">Murphey Candler Park</h3>
+      <p class="neighbor-desc">Beautiful neighborhood park with lake, trails and recreation — quintessential Brookhaven outdoor lifestyle.</p>
+      <div class="neighbor-dist">5 minutes away</div>
+    </div>
+    <div class="neighbor-card">
+      <div class="neighbor-icon">🎓</div>
+      <h3 class="neighbor-name">Top-Rated Schools</h3>
+      <p class="neighbor-desc">Served by DeKalb County's most sought-after schools — a major draw for families relocating to Atlanta.</p>
+      <div class="neighbor-dist">Zoned District</div>
+    </div>
+    <div class="neighbor-card">
+      <div class="neighbor-icon">✈️</div>
+      <h3 class="neighbor-name">Hartsfield-Jackson</h3>
+      <p class="neighbor-desc">The world's busiest airport — ideal for executives, frequent travelers, and international buyers.</p>
+      <div class="neighbor-dist">30 minutes away</div>
+    </div>
+    <div class="neighbor-card">
+      <div class="neighbor-icon">📈</div>
+      <h3 class="neighbor-name">Strong Property Values</h3>
+      <p class="neighbor-desc">Brookhaven consistently ranks among Atlanta's top-appreciating luxury neighborhoods with strong buyer demand.</p>
+      <div class="neighbor-dist">Top performing ZIP</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact reveal" id="contact">
+  <div class="contact-wrapper">
+    <div>
+      <div class="section-label">Request Information</div>
+      <h2 class="section-title">Schedule a <em>Private Showing</em></h2>
+      <p class="section-body">Connect directly with Matt Simonds to schedule your private tour of 898 Byrnwyck Road NE.</p>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-field">
+            <label>First Name</label>
+            <input type="text" placeholder="First Name">
+          </div>
+          <div class="form-field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Last Name">
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" placeholder="(000) 000-0000">
+        </div>
+        <div class="form-field">
+          <label>I Am A</label>
+          <select>
+            <option>Home Buyer</option>
+            <option>Realtor / Agent</option>
+            <option>Investor</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea rows="4" placeholder="I'd like to schedule a showing for 898 Byrnwyck..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="handleSubmit()">Request Showing →</button>
+      </div>
+    </div>
+    <div>
+      <div class="section-label">Listed By</div>
+      <h2 class="section-title" style="margin-bottom: 0;">Matt <em>Simonds</em></h2>
+      <div class="agent-card">
+        <div class="agent-avatar">MS</div>
+        <div class="agent-name">Matt Simonds</div>
+        <div class="agent-brokerage">Bolst, Inc. · Atlanta, GA</div>
+        <div class="agent-info">
+          <div class="agent-info-item">📧 <a href="mailto:mattsimonds@bolst.homes">mattsimonds@bolst.homes</a></div>
+          <div class="agent-info-item">🏠 898 Byrnwyck Rd NE · $1,250,000</div>
+          <div class="agent-info-item">📍 Atlanta, Georgia 30319</div>
+        </div>
+      </div>
+      <div style="margin-top: 40px; padding: 36px; background: var(--dark-3); border: 1px solid rgba(201,169,110,0.15);">
+        <div class="section-label" style="margin-bottom: 12px;">Presented By</div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-size: 22px; margin-bottom: 6px;">Rain Management <em style="font-style:italic; color: var(--gold-light);">Solutions</em></div>
+        <div style="font-size: 11px; color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 20px;">Cinematic Listings. Lasting Impressions.</div>
+        <p style="font-size: 12px; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;">We build cinematic AI-powered listing pages that make your properties unforgettable — interactive room tours, live mortgage calculators, and lead capture all in one stunning page.</p>
+        <a href="mailto:sharainak@rainmanagementsolutionsllc.com?subject=I want a listing page like this!&body=Hi Rain! I just saw your demo and I'm interested in a cinematic listing page." style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-decoration: none;">Get Your Listing Page →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Rain Management Solutions</div>
+    <div class="footer-tagline">Cinematic Listings. Lasting Impressions.</div>
+  </div>
+  <div class="footer-copy">898 Byrnwyck Rd NE · Atlanta, GA 30319 · Listed by Matt Simonds · Bolst, Inc.<br>© 2026 Rain Management Solutions</div>
+</footer>
+
+<script>
+  // NAV SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // TOUR TABS
+  function showPanel(name) {
+    document.querySelectorAll('.tour-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tour-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // LIGHTBOX
+  const photos = [
+    { src: '898byrnwyckexterior.webp', caption: 'Exterior · Entry' },
+    { src: '898byrnwyck.webp', caption: 'Grand Foyer' },
+    { src: '898byrnwyckliving.webp', caption: 'Living Room' },
+    { src: '898byrnwyckkitchen.webp', caption: "Chef's Kitchen" },
+    { src: '898byrnwyckmaster.webp', caption: 'Primary Suite' }
+  ];
+  let currentPhoto = 0;
+  function openLightbox(i) {
+    currentPhoto = i;
+    document.getElementById('lightbox-img').src = photos[i].src;
+    document.getElementById('lightbox-caption').textContent = photos[i].caption;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function nextPhoto() {
+    currentPhoto = (currentPhoto + 1) % photos.length;
+    openLightbox(currentPhoto);
+  }
+  function prevPhoto() {
+    currentPhoto = (currentPhoto - 1 + photos.length) % photos.length;
+    openLightbox(currentPhoto);
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+
+  // MORTGAGE CALCULATOR
+  function calcMortgage() {
+    const price = parseFloat(document.getElementById('homePrice').value) || 1250000;
+    const downPct = parseFloat(document.getElementById('downPct').value) || 20;
+    const rate = parseFloat(document.getElementById('rate').value) || 6.8;
+    const term = parseInt(document.getElementById('term').value) || 30;
+    const down = price * (downPct / 100);
+    const loan = price - down;
+    const monthlyRate = rate / 100 / 12;
+    const n = term * 12;
+    const payment = loan * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1);
+    document.getElementById('monthlyPayment').textContent = '$' + Math.round(payment).toLocaleString();
+    document.getElementById('br-price').textContent = '$' + price.toLocaleString();
+    document.getElementById('br-down').textContent = '$' + Math.round(down).toLocaleString();
+    document.getElementById('br-loan').textContent = '$' + Math.round(loan).toLocaleString();
+    document.getElementById('br-rate').textContent = rate + '%';
+    document.getElementById('br-term').textContent = term + ' Years';
+  }
+  calcMortgage();
+
+  // FORM SUBMIT
+  function handleSubmit() {
+    alert('Thank you! Matt Simonds will be in touch shortly to schedule your showing.');
+  }
+</script>
+</body>
+</html>
